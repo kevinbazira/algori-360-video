@@ -23,12 +23,13 @@ Please Note that this plugin;
 == Features ===
 
 1. No Flash Needed
-2. Compatible with Modern Browsers like Chrome, Firefox, IE8, IE9, Edge and Safari.
+2. Compatible with Modern Browsers like Chrome, Firefox, Edge and Safari.
 3. Supports VR (Virtual Reality) headsets such as Vive, Rift, Windows Mixed Reality, Daydream, GearVR and Cardboard.
 4. Supports MP4.
 5. Supports both mouse and touch.
-6. You can zoom into the video using touch.
-7. Only one 360° video can be loaded on a single page.
+6. Has Play/Pause button to play and pause video.
+7. You can zoom into the video using touch.
+8. Only one 360° video can be loaded on a single page.
 
 == Installation ==
 

@@ -23,10 +23,11 @@ Please Note that this plugin;
 # Features
 
 * No Flash Needed
-* Compatible with Modern Browsers like Chrome, Firefox, IE8, IE9, Edge and Safari.
+* Compatible with Modern Browsers like Chrome, Firefox, Edge and Safari.
 * Supports VR (Virtual Reality) headsets such as Vive, Rift, Windows Mixed Reality, Daydream, GearVR and Cardboard.
 * Supports MP4.
 * Supports both mouse and touch.
+* Has Play/Pause button to play and pause video.
 * You can zoom into the video using touch.
 * Only one 360° video can be loaded on a single page.
 
@@ -35,7 +36,7 @@ Please Note that this plugin;
 * Download the plugin, unzip it and move the unzipped folder to the "wp-content/plugins" directory in your WordPress installation.
 * In your admin panel, go to Plugins and you'll find 360 Video in the plugins section.
 * Click on the 'Activate' button to use your new plugin right away.
-* http://www.kevinbazira.com/blog/article/how-to-add-360-degree-panorama-images-and-videos-to-your-wordpress-website-using-algori-360-image-and-video-gutenberg-plugins for a guide on how to add and customize 360° videos to your WordPress site.
+* Go to http://www.kevinbazira.com/blog/article/how-to-add-360-degree-panorama-images-and-videos-to-your-wordpress-website-using-algori-360-image-and-video-gutenberg-plugins for a guide on how to add and customize 360° videos to your WordPress site.
 * Done :)
 
 # How to use 
