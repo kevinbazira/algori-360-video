@@ -12,6 +12,10 @@ Requires at least: WP 4.9.6
 
 Algori 360 Video is a Gutenberg Block Plugin that enables you add interactive 360° videos to your WordPress website. 
 
+<p align="center">
+  <img src="https://ps.w.org/360-video/assets/screenshot-1.gif" alt="Algori 360 Video">
+</p>
+
 # Description 
 
 Algori 360 Video is a Gutenberg Block Plugin that enables you add interactive 360° videos to your WordPress website. Adding immersive panorama videos, spherical videos, equirectangular videos, and VR (Virtual Reality) videography will boost user engagement and increase revenue for your site.
