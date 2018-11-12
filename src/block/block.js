@@ -89,7 +89,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	
 	keywords: [ // Block search keywords
-		__( 'panorama video - three sixty degree video' ), 
+		__( 'algori panorama video - three sixty degree video' ), 
 		__( 'spherical video - full-sphere video' ), 
 		__( 'equirectangular video - VR (Virtual Reality) videography' ), 
 	],
@@ -112,7 +112,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
-	edit: function( { attributes, setAttributes, isSelected, className, noticeOperations, noticeUI } ) {
+	edit: withNotices( ( { attributes, setAttributes, isSelected, className, noticeOperations, noticeUI } ) => {
 		
 		const { url, title, align, width, height, contentAlign, id } = attributes;
 		const updateWidth = ( width ) => setAttributes( { width: parseInt( width, 10 ) } );
@@ -148,7 +148,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 					<Toolbar>
 						<MediaUpload
 							onSelect={ onSelectVideo }
-							type="video"
+							allowedTypes={ [ 'image' ] }
 							value={ id }
 							render={ ( { open } ) => (
 								<IconButton
@@ -209,9 +209,9 @@ registerBlockType( 'cgb/block-algori-360-video', {
 						} }
 						onSelect={ onSelectVideo }
 						accept="video/*"
-						type="video"
+						allowedTypes={ [ 'video' ] }
 						notices={ noticeUI }
-						
+						onError={ noticeOperations.createErrorNotice }
 					/>
 				</Fragment>
 			);
@@ -244,7 +244,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 			</Fragment>
 		);
 		
-	},
+	} ),
 	
 
 	/**
@@ -256,7 +256,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
 	
-	save: function( { attributes, className } ) {
+	save: ( { attributes, className } ) => {
 		
 		const { url, title, align, width, height, contentAlign, id } = attributes;
 		
