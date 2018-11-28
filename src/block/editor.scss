@@ -5,16 +5,12 @@
  * which makes it higher in priority.
  */
 
-.wp-block-cgb-block-algori-360-video  {
-  width: 100%;
+figure {
+	margin: auto !important;
 }
 
-.wp-block-cgb-block-algori-360-video-embedded-scene  {
-  width: 600px;
-  height: 300px;
-}
 
 .wp-block-cgb-block-algori-360-video-controls {
-  width:600px; 
+  width:100%; 
   text-align:center;
 }
