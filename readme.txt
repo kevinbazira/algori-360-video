@@ -1,10 +1,10 @@
 === Algori 360 Video ===
 Contributors: kevinbazira
 Tags: gutenberg, block, 360, video, panorama, spherical-videos, equirectangular-videos, VR, Virtual Reality, videography
-Requires at least: 4.9.6
+Requires at least: 4.9.8
 Tested up to: 5.0
 Requires PHP: 5.6.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 
@@ -64,6 +64,18 @@ Nope. At the moment this plugin supports one 360° video per page.
 Nope. Algori 360 Video only works with Gutenberg.
 
 == Changelog ==
+
+= 1.0.2 - Nov 28 2018 =
+* Added: Default 360° video width (600px) and height(300px)
+* Added: "Insert from URL" button to MediaPlaceholder
+* Removed: MediaPlaceholder labels name
+* Added: MediaPlaceholder labels instructions
+* Removed: core-blocks-image class from all InspectorControls
+* Removed: AlignmentToolbar
+* Removed: BlockAlignmentToolbar
+* Changed: 360° block div to figure
+* Changed: styles in CSS files to support figure
+* Added: Social call to action into README.md
 
 = 1.0.1 - Nov 12 2018 =
 * Changed: MediaPlaceholder and MediaUpload "type" to "allowedTypes" to support Gutenberg >= 4.2.0
