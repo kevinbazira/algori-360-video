@@ -13,7 +13,8 @@ const {
 	PanelBody,
 	TextControl,  
 	Toolbar, 
-	withNotices } = wp.components; // import { IconButton, PanelBody, RangeControl, ToggleControl, Toolbar, withNotices } from '@wordpress/components';
+	withNotices,
+	Notice } = wp.components; // import { IconButton, PanelBody, RangeControl, ToggleControl, Toolbar, withNotices } from '@wordpress/components';
 const { Fragment } = wp.element; // import { Fragment } from '@wordpress/element';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -23,6 +24,7 @@ const {
 	BlockAlignmentToolbar,
 	MediaPlaceholder,
 	MediaUpload,
+	MediaUploadCheck,
 	AlignmentToolbar,
 	RichText, 
 } = wp.editor; // Import * from @wordpress/editor 
@@ -36,6 +38,13 @@ const {
 import './style.scss';
 import './editor.scss';
 
+
+/**
+ * Module Constants
+ */
+const ALLOWED_MEDIA_TYPES = [ 'video' ];
+
+
 const blockAttributes = {
 	title: {
 		type: 'array',
@@ -47,6 +56,10 @@ const blockAttributes = {
 	},
 	align: {
 		type: 'string',
+	},
+	widthBeforeWideFullAlignments: {
+		type: 'number',
+		default: 600,
 	},
 	width: {
 		type: 'number',
@@ -107,13 +120,13 @@ registerBlockType( 'cgb/block-algori-360-video', {
 	 */
 	edit: withNotices( ( { attributes, setAttributes, isSelected, className, noticeOperations, noticeUI } ) => {
 		
-		const { url, title, align, width, height, contentAlign, id } = attributes;
-		const updateWidth = ( width ) => setAttributes( { width: parseInt( width, 10 ) } );
+		const { url, title, align, widthBeforeWideFullAlignments, width, height, contentAlign, id } = attributes;
+		const updateWidth = ( width ) => setAttributes( { width: parseInt( width, 10 ), widthBeforeWideFullAlignments: parseInt( width, 10 ) } );
 		const updateHeight = ( height ) => setAttributes( { height: parseInt( height, 10 ) } );
 		
 		const playPause = () => { //  Use HTML5 video API methods to play() or pause() video
 			const algori360Video = document.getElementById("algori-360-video"); 
-			(algori360Video.paused) ? algori360Video.play() : algori360Video.pause();
+			( algori360Video.paused ) ? algori360Video.play() : algori360Video.pause();
 		}
 		
 		const onSelectVideo = ( media ) => { // Set video url
@@ -132,24 +145,39 @@ registerBlockType( 'cgb/block-algori-360-video', {
 			
 		}
 		
+		const updateAlignment = ( nextAlign ) => {
+			
+			const extraUpdatedAttributes = [ 'wide', 'full' ].indexOf( nextAlign ) !== -1 ?
+				{ width: undefined } :
+				{ width: widthBeforeWideFullAlignments };
+			
+			setAttributes( { ...extraUpdatedAttributes, align: nextAlign } );
+			
+		} 
 		
 		const controls = ( // Set Block and Inspector Controls
 			<Fragment>
 				<BlockControls>
+					<BlockAlignmentToolbar
+						value={ align }
+						onChange={ updateAlignment }
+					/>
 					<Toolbar>
-						<MediaUpload
-							onSelect={ onSelectVideo }
-							allowedTypes={ [ 'video' ] }
-							value={ id }
-							render={ ( { open } ) => (
-								<IconButton
-									className="components-toolbar__control"
-									label={ __( 'Edit video' ) }
-									icon="edit"
-									onClick={ open }
-								/>
-							) }
-						/>
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ onSelectVideo }
+								allowedTypes={ ALLOWED_MEDIA_TYPES }
+								value={ id }
+								render={ ( { open } ) => (
+									<IconButton
+										className="components-toolbar__control"
+										label={ __( 'Edit video' ) }
+										icon="edit"
+										onClick={ open }
+									/>
+								) }
+							/>
+						</MediaUploadCheck>
 					</Toolbar>
 				</BlockControls>
 				{ !! url && (
@@ -160,14 +188,26 @@ registerBlockType( 'cgb/block-algori-360-video', {
 									{ __( 'Video Dimensions' ) }
 								</p>
 								<div>
-									<TextControl
-										type="number"
-										label={ __( 'Width' ) }
-										value={ width !== undefined ? width : '' }
-										placeholder={ 600 }
-										min={ 1 }
-										onChange={ updateWidth }
-									/>
+									{
+										[ 'wide', 'full' ].indexOf( align ) !== -1 ?
+										<Notice status="informational" isDismissible="false" >
+											{__( 'The' ) } &nbsp; 
+											<strong>{__( 'Width' ) }</strong> &nbsp;  
+											{__( 'setting has been disabled because you have chosen either' ) } &nbsp;  
+											<strong>{__( 'Full' ) }</strong> &nbsp; 
+											{__( 'or' ) } &nbsp; 
+											<strong>{__( 'Wide' ) }</strong> &nbsp; 
+											{__( 'width alignment from the block toolbar.' ) } 
+										</Notice> :
+										<TextControl
+											type="number"
+											label={ __( 'Width' ) }
+											value={ width !== undefined ? width : '' }
+											placeholder={ 600 }
+											min={ 1 }
+											onChange={ updateWidth }
+										/>
+									}
 									<TextControl
 										type="number"
 										label={ __( 'Height' ) }
@@ -199,7 +239,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 						onSelect={ onSelectVideo }
 						onSelectURL={ onSelectURL }
 						accept="video/*"
-						allowedTypes={ [ 'video' ] }
+						allowedTypes={ ALLOWED_MEDIA_TYPES }
 						notices={ noticeUI }
 						onError={ noticeOperations.createErrorNotice }
 					/>
@@ -212,7 +252,10 @@ registerBlockType( 'cgb/block-algori-360-video', {
 		return ( // Return 360 video with play/pause button and element settings (css classes) and block controls. Get video using either { url } or { id }
 			<Fragment>
 				{ controls }
-				<figure style={ { width, height } } >
+				<figure 
+					style={ [ 'wide', 'full' ].indexOf( align ) !== -1 ? { height } : { width, height } } // Remove width from style on wide alignments i.e delegate it to theme
+					className={ `wp-block-cgb-block-algori-360-video align${align}` } 
+				>
 					<a-scene embedded>
 					  <a-assets>
 						<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
@@ -251,7 +294,10 @@ registerBlockType( 'cgb/block-algori-360-video', {
 		const { url, title, align, width, height, contentAlign, id } = attributes;
 		
 		return (
-			<figure style={ { width, height } } >
+			<figure 
+				style={ [ 'wide', 'full' ].indexOf( align ) !== -1 ? { height } : { width, height } } 
+				className={ `align${align}` } 
+			>
 				<a-scene embedded="">
 				  <a-assets>
 					<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
@@ -280,6 +326,39 @@ registerBlockType( 'cgb/block-algori-360-video', {
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/deprecated-blocks/
 	 */
 	deprecated: [ 
+		{
+			attributes: {
+				...blockAttributes,
+			},
+			
+			save: ( { attributes, className } ) => {
+		
+				const { url, title, align, width, height, contentAlign, id } = attributes;
+				
+				return (
+					<figure style={ { width, height } } >
+						<a-scene embedded="">
+						  <a-assets>
+							<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
+						  </a-assets>
+						  <a-videosphere src="#algori-360-video" ></a-videosphere>
+						</a-scene>
+						<div className="wp-block-cgb-block-algori-360-video-controls" >
+						  <button id="algori-360-video-play-pause-btn" onclick="const algori360Video = document.getElementById('algori-360-video'); (algori360Video.paused) ? algori360Video.play() : algori360Video.pause();" > 
+							<span class="dashicons-before dashicons-controls-play" > 
+							  { __( 'Play' ) }  
+							</span>
+							&nbsp;&#124;&nbsp;
+							<span class="dashicons-before dashicons-controls-pause" > 
+							  { __( 'Pause' ) }
+							</span> 
+						  </button> 
+						</div>
+					</figure>
+				);
+				
+			},
+		},
 		{
 			attributes: {
 				...blockAttributes,
