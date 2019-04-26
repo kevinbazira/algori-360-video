@@ -1,10 +1,10 @@
 === Algori 360 Video ===
 Contributors: kevinbazira
 Tags: gutenberg, block, 360, video, panorama, spherical-videos, equirectangular-videos, VR, Virtual Reality, videography
-Requires at least: 4.9.8
-Tested up to: 5.0
+Requires at least: 5.0.0
+Tested up to: 5.1.1
 Requires PHP: 5.6.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 
@@ -65,30 +65,39 @@ Nope. Algori 360 Video only works with Gutenberg.
 
 == Changelog ==
 
+= 1.0.3 - Apr 26 2019 =
+* Upgraded cgb-scripts from 1.11.1 to 1.13.0
+* Improved documentation to match WP standards
+* Added MediaUploadCheck wrapper onto MediaUpload to make sure the current user has Upload permissions
+* Added BlockAlignmentToolbar to enable users to choose left, right, center, wide, and full width alignments
+* Added alginment styles for left, right, center, wide and full width alignments
+* Added Notice in block inspector section to notify user when Full/Wide width alignments are chosen
+* Removed unused styles from editor.scss
+
 = 1.0.2 - Nov 28 2018 =
-* Added: Default 360° video width (600px) and height(300px)
-* Added: "Insert from URL" button to MediaPlaceholder
-* Removed: MediaPlaceholder labels name
-* Added: MediaPlaceholder labels instructions
-* Removed: core-blocks-image class from all InspectorControls
-* Removed: AlignmentToolbar
-* Removed: BlockAlignmentToolbar
-* Changed: 360° block div to figure
-* Changed: styles in CSS files to support figure
-* Added: Social call to action into README.md
+* Added Default 360° video width (600px) and height(300px)
+* Added "Insert from URL" button to MediaPlaceholder
+* Removed MediaPlaceholder labels name
+* Added MediaPlaceholder labels instructions
+* Removed core-blocks-image class from all InspectorControls
+* Removed AlignmentToolbar
+* Removed BlockAlignmentToolbar
+* Changed 360° block div to figure
+* Changed styles in CSS files to support figure
+* Added social call to action into README.md
 
 = 1.0.1 - Nov 12 2018 =
-* Changed: MediaPlaceholder and MediaUpload "type" to "allowedTypes" to support Gutenberg >= 4.2.0
-* Added: withNotices to support noticeOperations
-* Added: algori in the block keywords
+* Changed MediaPlaceholder and MediaUpload "type" to "allowedTypes" to support Gutenberg >= 4.2.0
+* Added withNotices to support noticeOperations
+* Added algori in the block keywords
 
 = 1.0.0 - Aug 8 2018 =
 * Initial Release
 
 == Credits ==
 
-* Based on create-guten-block https://github.com/ahmadawais/create-guten-block , (C) 2018 Ahmad Awais, [MIT] (https://opensource.org/licenses/MIT)
-* A-Frame https://aframe.io/ , (C) 2015-2018 Mozilla and A-Frame Authors, [MIT] (https://opensource.org/licenses/MIT)
+* [create-guten-block](https://github.com/ahmadawais/create-guten-block) , (C) 2018 Ahmad Awais, [MIT](https://opensource.org/licenses/MIT)
+* [A-Frame](https://aframe.io/) , (C) 2015-2018 Mozilla and A-Frame Authors, [MIT](https://opensource.org/licenses/MIT)
 
-Algori 360 Video WordPress Plugin, Copyright 2018 Kevin Bazira.
+Algori 360 Video WordPress Plugin, Copyright 2019 Kevin Bazira.<br/>
 Algori 360 Video is distributed under the terms of the GNU GPL.
