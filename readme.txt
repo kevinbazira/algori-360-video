@@ -2,7 +2,7 @@
 Contributors: kevinbazira
 Tags: gutenberg, block, 360, video, panorama, spherical-videos, equirectangular-videos, VR, Virtual Reality, videography
 Requires at least: 5.0.0
-Tested up to: 5.1.1
+Tested up to: 5.2
 Requires PHP: 5.6.0
 Stable tag: 1.0.3
 License: GNU General Public License v2 or later
@@ -70,7 +70,7 @@ Nope. Algori 360 Video only works with Gutenberg.
 * Improved documentation to match WP standards
 * Added MediaUploadCheck wrapper onto MediaUpload to make sure the current user has Upload permissions
 * Added BlockAlignmentToolbar to enable users to choose left, right, center, wide, and full width alignments
-* Added alginment styles for left, right, center, wide and full width alignments
+* Added alignment styles for left, right, center, wide and full width alignments
 * Added Notice in block inspector section to notify user when Full/Wide width alignments are chosen
 * Removed unused styles from editor.scss
 
