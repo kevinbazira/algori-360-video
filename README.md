@@ -58,9 +58,13 @@ Please Note that this plugin;
 
 Nope. At the moment this plugin supports one 360° video per page.
 
-= Can I use this plugin with other page builders am using? =
+= Can I use this plugin with other page builders I am using? =
 
 Nope. Algori 360 Video only works with Gutenberg.
+
+= What theme works with Algori 360 Video? =
+
+Most WordPress themes that are optimized for Gutenberg will work well with Algori 360 Video. To get a full experience of the next-generation WordPress block editor, you’ll need a Gutenberg-ready WordPress theme, like [Algori Blogger](https://wordpress.org/themes/algori-blogger/).
 
 # Changelog 
 
