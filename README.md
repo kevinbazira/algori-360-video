@@ -64,7 +64,7 @@ Nope. Algori 360 Video only works with Gutenberg.
 
 = What theme works with Algori 360 Video? =
 
-Most WordPress themes that are optimized for Gutenberg will work well with Algori 360 Video. To get a full experience of the next-generation WordPress block editor, you’ll need a Gutenberg-ready WordPress theme, like [Algori Blogger](https://wordpress.org/themes/algori-blogger/).
+Most WordPress themes that are optimized for Gutenberg will work well with Algori 360 Video. To get a full experience of the next-generation WordPress block editor, you’ll need a Gutenberg-ready WordPress theme, like [Algori Blogger](https://wordpress.org/themes/algori-blogger/) or [Algori Shop](https://wordpress.org/themes/algori-shop/).
 
 # Changelog 
 
