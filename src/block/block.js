@@ -12,7 +12,8 @@ const {
 	IconButton, 
 	PanelBody,
 	TextControl,  
-	Toolbar, 
+	Toolbar,  
+	Spinner,
 	withNotices,
 	Notice } = wp.components; // import { IconButton, PanelBody, RangeControl, ToggleControl, Toolbar, withNotices } from '@wordpress/components';
 const { Fragment } = wp.element; // import { Fragment } from '@wordpress/element';
@@ -28,6 +29,7 @@ const {
 	AlignmentToolbar,
 	RichText, 
 } = wp.editor; // Import * from @wordpress/editor 
+const { isBlobURL } = wp.blob;
 
 
 /**
@@ -252,11 +254,13 @@ registerBlockType( 'cgb/block-algori-360-video', {
 		return ( // Return 360 video with play/pause button and element settings (css classes) and block controls. Get video using either { url } or { id }
 			<Fragment>
 				{ controls }
+				{ isBlobURL( url ) && <Spinner /> }
 				<figure 
 					style={ [ 'wide', 'full' ].indexOf( align ) !== -1 ? { height } : { width, height } } // Remove width from style on wide alignments i.e delegate it to theme
 					className={ `wp-block-cgb-block-algori-360-video align${align}` } 
 				>
-					<a-scene embedded>
+					<a-scene loading-screen="enabled: false;" embedded>
+					  <a-entity camera="" look-controls="reverseMouseDrag: true"></a-entity>
 					  <a-assets>
 						<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
 					  </a-assets>
@@ -298,7 +302,8 @@ registerBlockType( 'cgb/block-algori-360-video', {
 				style={ [ 'wide', 'full' ].indexOf( align ) !== -1 ? { height } : { width, height } } 
 				className={ `align${align}` } 
 			>
-				<a-scene embedded="">
+				<a-scene loading-screen="enabled: false;" embedded="">
+				  <a-entity camera="" look-controls="reverseMouseDrag: true"></a-entity>
 				  <a-assets>
 					<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
 				  </a-assets>
@@ -326,6 +331,42 @@ registerBlockType( 'cgb/block-algori-360-video', {
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/deprecated-blocks/
 	 */
 	deprecated: [ 
+		{
+			attributes: {
+				...blockAttributes,
+			},
+			
+			save: ( { attributes, className } ) => {
+		
+				const { url, title, align, width, height, contentAlign, id } = attributes;
+				
+				return (
+					<figure 
+						style={ [ 'wide', 'full' ].indexOf( align ) !== -1 ? { height } : { width, height } } 
+						className={ `align${align}` } 
+					>
+						<a-scene embedded="">
+						  <a-assets>
+							<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
+						  </a-assets>
+						  <a-videosphere src="#algori-360-video" ></a-videosphere>
+						</a-scene>
+						<div className="wp-block-cgb-block-algori-360-video-controls" >
+						  <button id="algori-360-video-play-pause-btn" onclick="const algori360Video = document.getElementById('algori-360-video'); (algori360Video.paused) ? algori360Video.play() : algori360Video.pause();" > 
+							<span class="dashicons-before dashicons-controls-play" > 
+							  { __( 'Play' ) }  
+							</span>
+							&nbsp;&#124;&nbsp;
+							<span class="dashicons-before dashicons-controls-pause" > 
+							  { __( 'Pause' ) }
+							</span> 
+						  </button> 
+						</div>
+					</figure>
+				);
+				
+			},
+		},
 		{
 			attributes: {
 				...blockAttributes,
