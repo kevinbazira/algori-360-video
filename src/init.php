@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function algori_360_video_cgb_block_assets() {
 	// Scripts.
-	wp_enqueue_script( 'algori_360_video-cgb-a-frame-js', plugins_url( '/dist/aframe-v0.8.2.min.js', dirname( __FILE__ ) ) );
+	wp_enqueue_script( 'algori_360_video-cgb-a-frame-js', plugins_url( '/dist/aframe-v0.9.0.min.js', dirname( __FILE__ ) ) );
 	
 	// Styles.
 	wp_enqueue_style(
