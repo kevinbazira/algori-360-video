@@ -21,6 +21,7 @@ const {
 	InspectorControls,
 	BlockAlignmentToolbar,
 	MediaPlaceholder,
+	MediaReplaceFlow,
 	MediaUpload,
 	MediaUploadCheck,
 	AlignmentToolbar,
@@ -146,6 +147,12 @@ registerBlockType( 'cgb/block-algori-360-video', {
 			
 		}
 		
+		const onUploadError = ( message ) => {
+			noticeOperations.removeAllNotices();
+			noticeOperations.createErrorNotice( message );
+		}
+
+		
 		const updateAlignment = ( nextAlign ) => {
 			
 			const extraUpdatedAttributes = [ 'wide', 'full' ].indexOf( nextAlign ) !== -1 ?
@@ -162,6 +169,15 @@ registerBlockType( 'cgb/block-algori-360-video', {
 					<BlockAlignmentToolbar
 						value={ align }
 						onChange={ updateAlignment }
+					/>
+					<MediaReplaceFlow
+						mediaId={ id }
+						mediaURL={ url }
+						allowedTypes={ ALLOWED_MEDIA_TYPES }
+						accept="video/*"
+						onSelect={ onSelectVideo }
+						onSelectURL={ onSelectURL }
+						onError={ onUploadError }
 					/>
 				</BlockControls>
 				{ !! url && (
