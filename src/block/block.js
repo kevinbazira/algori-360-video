@@ -301,7 +301,7 @@ registerBlockType( 'cgb/block-algori-360-video', {
 				style={ [ 'wide', 'full' ].indexOf( align ) !== -1 ? { height } : { width, height } } 
 				className={ `align${align}` } 
 			>
-				<a-scene loading-screen="enabled: false;" embedded="">
+				<a-scene loading-screen="enabled: false;" device-orientation-permission-ui="enabled: false" embedded="">
 				  <a-entity camera="" look-controls="reverseMouseDrag: true"></a-entity>
 				  <a-assets>
 					<video id="algori-360-video" src={ url } crossorigin="anonymous" autoplay="false" loop="true" ></video>
