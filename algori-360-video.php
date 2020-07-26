@@ -5,7 +5,7 @@
  * Description: <strong>Algori 360 Video</strong> is a Gutenberg Block Plugin that enables you add interactive 360° videos to your website. Adding immersive panorama videos, spherical videos, equirectangular videos and VR (Virtual Reality) videography <strong>will boost user engagement and increase revenue for your site</strong>.
  * Author: Kevin Bazira
  * Author URI: http://kevinbazira.com/
- * Version: 1.0.6
+ * Version: 1.0.7
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  *
