@@ -108,6 +108,12 @@ registerBlockType( 'algori-360-video/block-algori-360-video', {
 		__( 'equirectangular video - VR (Virtual Reality) videography' ), 
 	],
 	
+	example: {
+		attributes: {
+			url: '../wp-content/plugins/algori-360-video/360-video-example.mp4',
+		},
+	},
+	
 	attributes: blockAttributes,  // Block attributes for editing in the block inspector.
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
