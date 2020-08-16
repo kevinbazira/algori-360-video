@@ -1,0 +1,13 @@
+{
+	"name": "algori-360-video/block-algori-360-video",
+	"title": "360 Video",
+	"category": "media",
+	"description": "Add interactive 360° videos to your WordPress website with ease",
+	"supports": {
+		"align": true
+	},
+	"textdomain": "360-video",
+	"script": "file:./dist/blocks.build.js",
+	"editorStyle": "file:./dist/blocks.editor.build.css",
+	"style": "file:./dist/blocks.style.build.css"
+}
