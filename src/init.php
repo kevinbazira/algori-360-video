@@ -80,16 +80,18 @@ function algori_360_video_cgb_block_assets() { // phpcs:ignore
 	 * @link https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type#enqueuing-block-scripts
 	 * @since 1.16.0
 	 */
-	register_block_type(
-		'cgb/block-algori-360-video', array(
-			// Enqueue blocks.style.build.css on both frontend & backend.
-			'style'         => 'algori_360_video-cgb-style-css',
-			// Enqueue blocks.build.js in the editor only.
-			'editor_script' => 'algori_360_video-cgb-block-js',
-			// Enqueue blocks.editor.build.css in the editor only.
-			'editor_style'  => 'algori_360_video-cgb-block-editor-css',
-		)
-	);
+	if( ! WP_Block_Type_Registry::get_instance()->is_registered( 'cgb/block-algori-360-video' ) ) {
+		register_block_type(
+			'algori-360-video/block-algori-360-video', array(
+				// Enqueue blocks.style.build.css on both frontend & backend.
+				'style'         => 'algori_360_video-cgb-style-css',
+				// Enqueue blocks.build.js in the editor only.
+				'editor_script' => 'algori_360_video-cgb-block-js',
+				// Enqueue blocks.editor.build.css in the editor only.
+				'editor_style'  => 'algori_360_video-cgb-block-editor-css',
+			)
+		);
+	}
 }
 
 // Hook: Block assets.
