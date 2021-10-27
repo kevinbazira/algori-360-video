@@ -122,6 +122,13 @@ registerBlockType( 'algori-360-video/block-algori-360-video', {
 	},
 	
 	attributes: blockAttributes,  // Block attributes for editing in the block inspector.
+	
+	getEditWrapperProps( attributes ) {
+		return {
+			'data-align': attributes.align,
+		};
+	},
+	
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
